@@ -56,8 +56,16 @@ app.post('/players/', async (request, response) => {
   const query = `INSERT into cricket_team(player_name,jersey_number,role) VALUES('${playerName}',${jerseyNumber}
   ,'${role}');`
   const dbreponse = await db.run(query)
-  console.log(dbresponse)
   response.send('Player Added to Team')
+})
+
+//Getting single player
+
+app.get('/players/:playerId/', async (request, response) => {
+  const {playerId} = request.params
+  const query = `select * from cricket_team where player_id=${playerId};`
+  let playerdetails = await db.get(query)
+  response.send(convertDBobjectintoResponseObject(playerdetails))
 })
 
 module.exports = app

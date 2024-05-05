@@ -1,5 +1,15 @@
-get http://localhost:3000/players/
+GET http://localhost:3000/players/
 
 
 
-post http://localhost:3000/players/
+POST http://localhost:3000/players/
+Content-Type:application/json
+
+{
+  "playerName": "Vishal",
+  "jerseyNumber": 17,
+  "role": "Bowler"
+}
+
+GET http://localhost:3000/players/17
+
