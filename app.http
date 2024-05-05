@@ -13,3 +13,17 @@ Content-Type:application/json
 
 GET http://localhost:3000/players/17
 
+
+
+PUT http://localhost:3000/players/11
+Content-Type:application/json
+
+{
+  "playerName": "Maneesh",
+  "jerseyNumber": 54,
+  "role": "All-rounder"
+}
+
+
+DELETE http://localhost:3000/players/11
+

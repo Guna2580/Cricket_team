@@ -68,4 +68,26 @@ app.get('/players/:playerId/', async (request, response) => {
   response.send(convertDBobjectintoResponseObject(playerdetails))
 })
 
+//updating player details
+
+app.put('/players/:playerId/', async (request, response) => {
+  const {playerId} = request.params
+  const playerDetails = request.body
+  const {playerName, jerseyNumber, role} = playerDetails
+  const updatequery = `UPDATE cricket_team
+  set player_name='${playerName}',jersey_number=${jerseyNumber},role='${role}'
+  where player_id=${playerId};`
+  await db.run(updatequery)
+  response.send('Player Details Updated')
+})
+
+//Deleting a player
+
+app.delete('/players/:playerId/', async (request, response) => {
+  const {playerId} = request.params
+  const query = `DELETE from cricket_team where player_id=${playerId};`
+  const dbresponse = await db.run(query)
+  response.send('Player Removed')
+})
+
 module.exports = app
